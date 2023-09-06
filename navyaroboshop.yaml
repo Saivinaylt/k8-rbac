@@ -51,4 +51,5 @@ metadata:
   name: roboshop-admin
   namespace: kube-system
   uid: d89c5f70-6f01-4899-9fff-e2b19bc517f3
+       
  
