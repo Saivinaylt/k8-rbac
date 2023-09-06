@@ -21,7 +21,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 # You need to already have a Role named "pod-reader" in that namespace.
 kind: RoleBinding
 metadata:
-  name: read-pods
+  name: roboshop-admin
   namespace: robodhop
 subjects:
 # You can specify more than one "subject"
@@ -31,5 +31,26 @@ subjects:
 roleRef:
   # "roleRef" specifies the binding to a Role / ClusterRole
   kind: Role #this must be Role or ClusterRole
-  name: roboshop-adminr # this must match the name of the Role or ClusterRole you wish to bind to
+  name: roboshop-admin # this must match the name of the Role or ClusterRole you wish to bind to
   apiGroup: rbac.authorization.k8s.io
+---
+# im attcaching the iam to the eks becuase eks dont know need to tell eks about iam user bind the vinay user
+apiVersion: v1
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::862277553890:role/eksctl-ebsefsclusterstorageclass-NodeInstanceRole-1DEJSND4Q9W2Z
+      username: system:node:{{EC2PrivateDNSName}}
+  mapUsers: |
+    - groups:
+      - roboshop-admin
+      userarn: arn:aws:iam::862277553890:user/saivinay
+      username: saivinay
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2023-07-27T12:57:45Z"
+  name: aws-auth
+  namespace: kube-system
+  uid: 03b76fb7-8661-49e3-aa52-0e231daa836f
