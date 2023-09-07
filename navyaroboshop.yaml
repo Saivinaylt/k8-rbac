@@ -51,6 +51,33 @@ metadata:
   name: aws-auth
   namespace: kube-system
   uid: 87472665-4283-4e36-afb0-a3f302030fb4
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  # "namespace" omitted since ClusterRoles are not namespaced
+  name: roboshop-admin 
+rules:
+- apiGroups: [""]
+  #
+  # at the HTTP level, the name of the resource for accessing Secret
+  # objects is "secrets"
+  resources: ["namespaces","nodes","persistentvolumes","secrets"]
+  verbs: ["get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+# This cluster role binding allows anyone in the "manager" group to read secrets in any namespace.
+kind: ClusterRoleBinding
+metadata:
+  name: roboshop-admin 
+subjects:
+- kind: User
+  name: kaki # Name is case sensitive
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: roboshop-admin
+  apiGroup: rbac.authorization.k8s.io
 
 
 
