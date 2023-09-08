@@ -38,19 +38,20 @@ data:
     - groups:
       - system:bootstrappers
       - system:nodes
-      rolearn: arn:aws:iam::862277553890:role/eksctl-ebsefsclusterstorageclass-NodeInstanceRole-15Z00QS0UBTG3
+      rolearn: arn:aws:iam::862277553890:role/eksctl-ebsefsclusterstorageclass-NodeInstanceRole-5ZTL2ZNAQYSU
       username: system:node:{{EC2PrivateDNSName}}
   mapUsers: |
     - groups:
       - roboshop-admin
-      userarn: arn:aws:iam::862277553890:user/kaki
-      username: kaki
+      userarn: arn:aws:iam::862277553890:user/saivinay 
+      username: saivinay
 kind: ConfigMap
 metadata:
-  creationTimestamp: "2023-09-07T01:52:30Z"
+  creationTimestamp: "2023-09-07T14:38:49Z"
   name: aws-auth
   namespace: kube-system
-  uid: 87472665-4283-4e36-afb0-a3f302030fb4
+  resourceVersion: "1161"
+  uid: 8406bbec-0b83-44f2-8936-5350d63d3b81
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
