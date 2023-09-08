@@ -33,27 +33,27 @@ roleRef:
   kind: Role #this must be Role or ClusterRole
   name: roboshop-admin # this must match the name of the Role or ClusterRole you wish to bind to
   apiGroup: rbac.authorization.k8s.io
----
-# im attcaching the iam to the eks becuase eks dont know need to tell eks about iam user bind the vinay user
-apiVersion: v1
-data:
-  mapRoles: |
-    - groups:
-      - system:bootstrappers
-      - system:nodes
-      rolearn: arn:aws:iam::862277553890:role/eksctl-rbaccluster-nodegroup-ng-1-NodeInstanceRole-1MZX7RNX2OOJR
-      username: system:node:{{EC2PrivateDNSName}}
-  mapUsers: |
-    - groups:
-      - roboshop-admin
-      userarn: arn:aws:iam::862277553890:user/dady
-      username: dady
-kind: ConfigMap
-metadata:
-  creationTimestamp: "2023-09-08T05:37:43Z"
-  name: aws-auth
-  namespace: kube-system
-  uid: ca037067-93b3-4fc9-8b78-5bbb3c088e77
+# ---
+# # im attcaching the iam to the eks becuase eks dont know need to tell eks about iam user bind the vinay user
+# apiVersion: v1
+# data:
+#   mapRoles: |
+#     - groups:
+#       - system:bootstrappers
+#       - system:nodes
+#       rolearn: arn:aws:iam::862277553890:role/eksctl-ebsefsclusterstorageclass-NodeInstanceRole-1DEJSND4Q9W2Z
+#       username: system:node:{{EC2PrivateDNSName}}
+#   mapUsers: |
+#     - groups:
+#       - roboshop-admin
+#       userarn: arn:aws:iam::862277553890:user/saivinay
+#       username: saivinay
+# kind: ConfigMap
+# metadata:
+#   creationTimestamp: "2023-07-27T12:57:45Z"
+#   name: aws-auth
+#   namespace: kube-system
+#   uid: 03b76fb7-8661-49e3-aa52-0e231daa836f
 # ---
 # apiVersion: rbac.authorization.k8s.io/v1
 # kind: ClusterRole
