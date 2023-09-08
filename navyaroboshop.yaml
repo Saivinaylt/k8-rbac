@@ -48,7 +48,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: "2023-09-07T14:38:49Z"
-  name: aws-auth
+  name: roboshop-admin
   namespace: kube-system
   uid: 8406bbec-0b83-44f2-8936-5350d63d3b81
 ---
